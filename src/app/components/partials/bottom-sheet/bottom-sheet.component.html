@@ -1,0 +1,27 @@
+<div class="bottom-sheet" [class.open]="getIsOpen()" [class.minimized]="getIsMinimized() && getIsOpen() === true">
+    <div class="bottom-sheet-controls">
+        <button *ngIf="getIsMinimized() === false" mat-icon-button (click)="toggleMinimizeBottomSheet()" aria-label="Minimize">
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <button *ngIf="getIsMinimized()" mat-icon-button (click)="toggleMinimizeBottomSheet()" aria-label="Expand">
+            <mat-icon>keyboard_arrow_up</mat-icon>
+        </button>
+        <button mat-icon-button (click)="closeBottomSheet()" aria-label="Close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <nav mat-tab-nav-bar>
+        <a mat-tab-link *ngFor="let link of getNavLinks()" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive"
+            [active]="rla.isActive" (click)="updateRouteForExistingPart(link.link)">
+            {{link.label}}
+        </a>
+    </nav>
+
+    <div class="bottom-sheet-content" [class.content-minimized]="getIsMinimized()">
+        <div *ngIf="hasSelectedPart()" class="div-selected-part text-ellipsis">{{getSelectedPart().partNumber}} -
+            {{getSelectedPart().nomenclature}}
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

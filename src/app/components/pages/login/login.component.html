@@ -1,0 +1,51 @@
+<div *ngIf="isAttemptingLogin()" class="loading-indicator">
+    <mat-progress-spinner color="rgba(0,0,0,1)" mode="indeterminate" diameter="80">
+    </mat-progress-spinner>
+</div>
+
+<div class="div-login-content">
+    <mat-card class="mat-card-login">
+        <mat-card-header class="mat-card-header-login">
+            <mat-card-title>Welcome</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="mat-card-login">
+
+                <mat-form-field class="full-width">
+                    <form (submit)="onSubmit()">
+                        <input matInput placeholder="Enter your username" [formControl]="getFormUsername()" required>
+                    </form>
+                    <mat-error *ngIf="getFormUsername().invalid">{{getFormUsernameError()}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width">
+                    <form (submit)="onSubmit()">
+                        <input matInput placeholder="Enter your password"
+                            [type]="getHidePassword() ? 'password' : 'text'" [formControl]="getFormPassword()" required>
+                    </form>
+                    <mat-error *ngIf="getFormPassword().invalid">{{getFormPasswordError()}}</mat-error>
+                    <button type="button" mat-icon-button matSuffix (click)="toggleHidePassword()"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="getHidePassword()" aria-label="Hide password">
+                        <mat-icon>{{getHidePassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <table class="table table-responsive">
+                    <tbody>
+                        <tr>
+                            <th>Test username</th>
+                            <td>admin</td>
+                            <th>Test password</th>
+                            <td>admin</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-error">{{getErrorMessage()}}</div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button type="submit" (click)="onSubmit()" aria-label="Login">LOGIN</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

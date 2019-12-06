@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Column Configuration</h1>
+<div mat-dialog-content>
+    Export options:
+    <section class="example-section">
+        <mat-checkbox class="checkbox-export" [(ngModel)]="optionSkipHeader">Skip Header</mat-checkbox>
+        <mat-checkbox class="checkbox-export" [(ngModel)]="optionSuppressQuotes">Suppress Quotes</mat-checkbox>
+        <mat-checkbox class="checkbox-export" [(ngModel)]="optionAllColumns">All Columns</mat-checkbox>
+    </section>
+
+    <table class="table table-striped table-responsive table-modal">
+        <tbody>
+            <tr>
+                <th>Skip Header</th>
+                <td>Check if you do not want first line to be the column header names.</td>
+            </tr>
+            <tr>
+                <th>Suppress Quotes</th>
+                <td>Check to not use double quotes between values.</td>
+            </tr>
+            <tr>
+                <th>All Columns</th>
+                <td>Check to export all columns instead of only visible columns.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial (click)="performCloseAction()" aria-label="Close">Close</button>
+  <button mat-button (click)="performExportDataAction()" aria-label="Export">Export</button>
+</div>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Column Configuration</h1>
+<div mat-dialog-content>
+    Resize main grid columns.
+    <table class="table table-striped table-responsive table-modal">
+        <tbody>
+            <tr>
+                <th>Auto size</th>
+                <td>Determines optimal width for each column.</td>
+            </tr>
+
+            <tr>
+                <th>Fit</th>
+                <td>Distribute column width evenly to fit window.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial (click)="performCloseAction()" aria-label="Close">Close</button>
+  <button mat-button (click)="performAutoSizeAction()" aria-label="Auto size">Auto size</button>
+  <button mat-button (click)="performFitAction()" aria-label="Fit">Fit</button>
+</div>

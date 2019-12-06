@@ -1,0 +1,14 @@
+.container-grid {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 320px;
+}
+
+.grid-custom {
+    flex: 1;
+}
+
+.cell-part-health-good {
+    background-color: rgba(0, 255, 0, 0.5);
+}

@@ -1,0 +1,81 @@
+.icon-navbar {
+    padding: 0 14px;
+}
+  
+.spacer-navbar {
+    flex: 1 1 auto;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.sidenav {
+  width: 25%;
+}
+
+.sidenav-nav-list {
+  padding: 1rem 1rem;
+
+  > button {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.mat-toolbar-subheader {
+  font-size: 15px;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.icon-grow {
+  transition: all .2s ease;
+  line-height: 40px !important;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.mat-toolbar-sidenav-open {
+  z-index: 2;
+}
+
+.div-app-title {
+  line-height: 40px;
+  height: 40px;
+  display: flex;
+}
+
+.mat-icon-menu {
+  line-height: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.app-title {
+  line-height: 40px;
+  height: 40px;
+  vertical-align: middle;
+}
+
+.span-logo {
+  height: 40px;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.image-logo {
+  height: 40px;
+}

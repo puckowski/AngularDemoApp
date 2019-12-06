@@ -1,0 +1,9 @@
+<div class="container-grid-search">
+    <mat-form-field class="input-grid-search">
+        <input matInput type="text" placeholder="Search all columns" [formControl]="getSearchControl()">
+        <button mat-button *ngIf="hasQuickFilter()" matSuffix mat-icon-button aria-label="Clear"
+            (click)="resetQuickFilter()" aria-label="Close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>

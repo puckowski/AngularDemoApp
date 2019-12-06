@@ -1,0 +1,40 @@
+<div class="navbar-container">
+    <mat-toolbar color="primary" [class.mat-toolbar-sidenav-open]="getSidenavOpen()">
+        <mat-toolbar-row>
+            <div class="div-app-title">
+                <button *ngIf="isAuthenticated()" class="button-menu mat-icon-menu" mat-icon-button (click)="sidenav.toggle()" aria-label="Menu">
+                    <mat-icon class="icon-grow">menu
+                    </mat-icon>
+                </button>
+                <span [matTooltip]="getAppVersionString()" matTooltipClass="mat-tooltip-custom"
+                    [matTooltipPosition]="getVersionTooltipPosition().value" class="app-title">
+                    Demo App
+                </span>
+            </div>
+
+            <span class="spacer-navbar"></span>
+            <span class="span-logo"><img src="assets/images/logo.png"
+                    class="image-logo" alt="Aircraft logo"/></span>
+            <span class="mat-toolbar-subheader">{{getDateString()}}</span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav class="sidenav" #sidenav [mode]="'over'" fixedTopGap="56" [autoFocus]="false">
+            <mat-nav-list class="sidenav-nav-list">
+                <button mat-raised-button class="mat-button-text-wrap" color="primary"
+                    (click)="openModal('Column')" aria-label="Open column configuration">Open Column Configuration</button>
+                <button mat-raised-button class="mat-button-text-wrap" color="primary"
+                    (click)="openModal('Export')" aria-label="Open export data">Open Export Data</button>
+                <button mat-raised-button class="mat-button-text-wrap" color="primary"
+                    (click)="openModal('About')" aria-label="Open about app">Open About App</button>
+                <button mat-raised-button class="mat-button-text-wrap" color="primary"
+                    (click)="performLogoutAction()" aria-label="Logout">Logout</button>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

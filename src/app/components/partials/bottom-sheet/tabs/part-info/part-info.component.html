@@ -1,0 +1,59 @@
+<div *ngIf="hasSelectedPart()">
+    <table class="table table-striped table-responsive">
+        <tbody>
+            <tr>
+                <th>Part Number</th>
+                <td>{{getSelectedPart().partNumber}}</td>
+                <th>Nomenclature</th>
+                <td>{{getSelectedPart().nomenclature}}</td>
+                <th>MRP Type</th>
+                <td>{{getSelectedPart().mrpType}}</td>
+            </tr>
+
+            <tr>
+                <th>Unit Cost New</th>
+                <td>{{getSelectedPart().unitCostNew}}</td>
+                <th>Unit Cost Used</th>
+                <td>{{getSelectedPart().unitCostUsed}}</td>
+                <th>Repairable</th>
+                <td>{{getSelectedPart().repairable}}</td>
+            </tr>
+
+            <tr>
+                <th>Lead Time</th>
+                <td>{{getSelectedPart().leadTime}}</td>
+                <th>Available Quantity</th>
+                <td>{{getSelectedPart().availableQuantity}}</td>
+                <th>Total Quantity</th>
+                <td>{{getSelectedPart().totalQuantity}}</td>
+            </tr>
+
+            <tr>
+                <th>Shop Required Quantity</th>
+                <td>{{getSelectedPart().shopRequiredQuantity}}</td>
+                <th>Bonded Quantity</th>
+                <td>{{getSelectedPart().bondedQuantity}}</td>
+                <th>Forecast Quantity 90 Days</th>
+                <td>{{getSelectedPart().forecastQuantity90Days}}</td>
+            </tr>
+
+            <tr>
+                <th>Reorder Point</th>
+                <td>{{getSelectedPart().reorderPoint}}</td>
+                <th>Supplier Code</th>
+                <td>{{getSelectedPart().supplierCode}}</td>
+                <th>Supplier Name</th>
+                <td>{{getSelectedPart().supplierName}}</td>
+            </tr>
+
+            <tr>
+                <th>Part Health</th>
+                <td>{{getSelectedPart().partHealth}}</td>
+                <th></th>
+                <td></td>
+                <th></th>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

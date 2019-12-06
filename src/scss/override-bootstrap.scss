@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+$table-accent-bg: #f5f7f7;
+
+@import "~bootstrap/scss/tables";
+
+table {
+    border-spacing: 0px;
+}

@@ -1,0 +1,22 @@
+<div class="fab-dismiss" *ngIf="getFabTogglerState() ==='active'" (click)="onToggleFab()">
+</div>
+
+<button mat-fab class="fab-toggler" (click)="onToggleFab()" aria-label="Open">
+    <i class="material-icons" [@fabToggler]="{value: getFabTogglerState()}">add</i> <!-- Animation here -->
+</button>
+
+<div class="fab-container">
+    <div [@speedDialStagger]="getButtons().length">
+        <div *ngFor="let btn of getButtons()">
+            <span class="span-flex">
+                <div class="fab-container-div-detail" matRipple matRippleCentered="centered"
+                    matRippleColor="rgba(0,0,0,0.3)" (click)="performAction(btn.actionId)">
+                    <div>{{btn.label}}</div>
+                </div>
+                <button mat-mini-fab class="fab-secondary" color="secondary" attr.aria-label="{{btn.label}}">
+                    <i class="material-icons" (click)="performAction(btn.actionId)">{{btn.icon}}</i>
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

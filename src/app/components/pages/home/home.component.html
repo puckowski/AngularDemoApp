@@ -1,0 +1,10 @@
+<div class="container-grid">
+    <app-grid-searchbar (valueChange)="applyQuickFilter($event)"></app-grid-searchbar>
+    <ag-grid-angular class="ag-theme-balham grid-custom" [rowData]="getRowData()" [columnDefs]="getColumnDefs()"
+        rowSelection="single" (gridReady)="onGridReady($event)" (rowClicked)="onRowClicked()"
+        [defaultColDef]="getDefaultColDef()" [defaultColGroupDef]="getDefaultColGroupDef()"
+        [columnTypes]="getColTypes()" [floatingFilter]="true">
+    </ag-grid-angular>
+</div>
+<app-bottom-sheet></app-bottom-sheet>
+<app-floating-action-button></app-floating-action-button>

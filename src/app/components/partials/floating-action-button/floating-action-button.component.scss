@@ -1,0 +1,68 @@
+.fab-dismiss {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.fab-container {
+    position: fixed;
+    bottom: 73px;
+    right: 15px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    overflow-y: auto;
+    max-height: calc(100vh - 71px);
+  
+    > div {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+  
+      button {
+        margin-bottom: 17px;
+      }
+    }
+}
+
+.fab-container-div-detail {
+  margin-right: 1rem;
+  display: inline-flex;
+  background-color: #ffffff;
+  border-radius: 50vh;
+  width: 12rem;
+  margin-bottom: 17px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.1);
+
+  > div {
+    line-height: 40px;
+    width: 100%;
+  }
+}
+
+.fab-toggler {
+    float: right;
+    z-index: 100;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.span-flex {
+  display: flex;
+}
