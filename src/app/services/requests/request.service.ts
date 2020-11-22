@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { PlannedPart } from '@app/models/planned-part.model';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
@@ -15,15 +15,25 @@ export class RequestService {
   constructor(private http: HttpClient, private loggerService: LoggerService) { }
 
   public getMockMainGridData(): Observable<PlannedPart[]> {
-    return this.http.get<PlannedPart[]>(environment.apiMainGridData)
-      .pipe(
-        map((resp: PlannedPart[]) => {
-          return resp.map((data: PlannedPart) => new PlannedPart(data));
-        }),
-        catchError((err: HttpErrorResponse) => {
-          return throwError('Could not retrieve main grid data.');
-        })
-      );
+    const httpOptions: any = {
+      headers: new HttpHeaders({
+        Authorization: 'none'
+      })
+    };
+
+    // Explicity set 'none' Authorization header so it is stripped for this request
+    return this.http.get<PlannedPart[]>(environment.apiMainGridData, {
+      headers: new HttpHeaders({
+        Authorization: 'none'
+      })
+    }).pipe(
+      map((resp: PlannedPart[]) => {
+        return resp.map((data: PlannedPart) => new PlannedPart(data));
+      }),
+      catchError((err: HttpErrorResponse) => {
+        return throwError('Could not retrieve main grid data.');
+      })
+    );
   }
 
   public getMockNoteData(): Observable<PartNote[]> {
