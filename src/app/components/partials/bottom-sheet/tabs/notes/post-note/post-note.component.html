@@ -1,10 +1,10 @@
 Post a new note:
 
-<div class="no-gutters">
+<div class="no-gutters div-post-content">
     <div class="col-md-6">
         <section>
             <mat-form-field class="full-width">
-                <input matInput [(ngModel)]="plannerName" placeholder="Name" maxlength="20" required>
+                <input matInput [(ngModel)]="plannerName" placeholder="Name" [formControl]="noteTitleControl">
             </mat-form-field>
         </section>
 
@@ -12,12 +12,19 @@ Post a new note:
             <mat-form-field class="full-width">
                 <textarea #commentInput matInput placeholder="Note" [formControl]="noteFormControl">
                 </textarea>
-                <mat-hint class="mat-hint-align-right">{{commentInput.value?.length || 0}}/{{getMaxCommentLength()}}</mat-hint>
+                <mat-hint class="mat-hint-align-right">{{commentInput.value?.length || 0}}/{{getMaxCommentLength()}}
+                </mat-hint>
             </mat-form-field>
         </section>
 
-        <button mat-raised-button color="primary" (click)="performPostNoteAction()">Post Note</button>
+        <div class="div-post">
+            <button mat-raised-button color="primary" (click)="performPostNoteAction()">Post Note</button>
+            <mat-progress-spinner *ngIf="getIsPosting()" class="spinner-post-note" color="rgba(0,0,0,1)" mode="indeterminate" diameter="22">
+            </mat-progress-spinner>
+        </div>
 
-        <div *ngIf="hasErrorMessage()" class="text-error text-with-icon"><mat-icon class="icon-aligned">error</mat-icon> {{getErrorMessage()}}</div>
+        <div *ngIf="hasErrorMessage()" class="text-error text-with-icon">
+            <mat-icon class="icon-aligned">error</mat-icon> {{getErrorMessage()}}
+        </div>
     </div>
 </div>

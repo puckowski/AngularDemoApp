@@ -13,6 +13,8 @@ import { User } from '@app/models/user.model';
 })
 export class LoginComponent implements OnInit {
 
+  private readonly DEFAULT_LOGIN_ERROR: string = 'Username or password is incorrect.';
+
   private returnUrl: string;
   private loading: boolean;
   private error: string;
@@ -21,7 +23,7 @@ export class LoginComponent implements OnInit {
   private hide = true;
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService) {
     /*
      * Redirect to home if already logged in.
      */
@@ -91,7 +93,12 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data: User) => {
-          this.router.navigate([this.returnUrl]);
+          if (DataHelper.isDefined(data) === true) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.error = this.DEFAULT_LOGIN_ERROR;
+            this.loading = false;
+          }
         },
         (error: string) => {
           this.error = error;

@@ -13,14 +13,16 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class PostNoteComponent implements OnInit, OnDestroy {
 
+  private readonly NOTE_TITLE_MAX_LENGTH_CHARS = 20;
   private readonly NOTE_MAX_LENGTH_CHARS = 250;
 
   @Input()
   private requestSubject: BehaviorSubject<boolean>;
   private errorMessage: string;
+  private isPosting: boolean;
 
   public noteFormControl: FormControl;
-  public plannerName: string;
+  public noteTitleControl: FormControl;
 
   constructor(private requestService: RequestService) {
     this.noteFormControl = new FormControl('', [
@@ -28,6 +30,14 @@ export class PostNoteComponent implements OnInit, OnDestroy {
       Validators.required,
       Validators.maxLength(this.NOTE_MAX_LENGTH_CHARS)
     ]);
+
+    this.noteTitleControl = new FormControl('', [
+      // tslint:disable-next-line: no-unbound-method
+      Validators.required,
+      Validators.maxLength(this.NOTE_TITLE_MAX_LENGTH_CHARS)
+    ]);
+
+    this.isPosting = false;
   }
 
   public ngOnInit(): void {
@@ -50,8 +60,12 @@ export class PostNoteComponent implements OnInit, OnDestroy {
     return this.errorMessage;
   }
 
+  public getIsPosting(): boolean {
+    return this.isPosting;
+  }
+  
   public performPostNoteAction(): void {
-    if (DataHelper.isDefined(this.plannerName) === false) {
+    if (DataHelper.isDefined(this.noteTitleControl.value) === false) {
       this.errorMessage = 'Planner name required.';
 
       return;
@@ -64,14 +78,20 @@ export class PostNoteComponent implements OnInit, OnDestroy {
     }
 
     if (this.noteFormControl.valid === true) {
-      this.requestService.postNoteData(this.plannerName, this.noteFormControl.value).subscribe((createdNote: PartNote) => {
+      this.isPosting = true;
+
+      this.requestService.postNoteData(this.noteTitleControl.value, this.noteFormControl.value).subscribe((createdNote: PartNote) => {
         this.errorMessage = null;
-        this.plannerName = '';
+        this.noteTitleControl.setValue('');
+        this.noteTitleControl.markAsUntouched();
         this.noteFormControl.setValue('');
+        this.noteFormControl.markAsUntouched();
+        this.isPosting = false;
 
         this.requestSubject.next(true);
       }, (error: HttpErrorResponse) => {
         this.errorMessage = 'Failed to add new note. Please try again later.';
+        this.isPosting = false;
       });
     }
   }
