@@ -4,7 +4,7 @@ Post a new note:
     <div class="col-md-6">
         <section>
             <mat-form-field class="full-width">
-                <input matInput [(ngModel)]="plannerName" placeholder="Name" [formControl]="noteTitleControl">
+                <input matInput placeholder="Name" [formControl]="noteTitleControl">
             </mat-form-field>
         </section>
 
@@ -19,7 +19,8 @@ Post a new note:
 
         <div class="div-post">
             <button mat-raised-button color="primary" (click)="performPostNoteAction()">Post Note</button>
-            <mat-progress-spinner *ngIf="getIsPosting()" class="spinner-post-note" color="rgba(0,0,0,1)" mode="indeterminate" diameter="22">
+            <mat-progress-spinner *ngIf="getIsPosting()" class="spinner-post-note" color="rgba(0,0,0,1)"
+                mode="indeterminate" diameter="22">
             </mat-progress-spinner>
         </div>
 
