@@ -13,7 +13,8 @@ export const environment = {
   apiUserList: 'http://localhost:5500/users',
   apiMockNotes: 'https://ft4ix4gfs6.execute-api.us-east-2.amazonaws.com/prod/notes',
   apiPostNote: 'https://ft4ix4gfs6.execute-api.us-east-2.amazonaws.com/prod/notes',
-  apiLambdaLogin: 'https://ft4ix4gfs6.execute-api.us-east-2.amazonaws.com/prod/login'
+  apiLambdaLogin: 'https://ft4ix4gfs6.execute-api.us-east-2.amazonaws.com/prod/login',
+  apiRefreshToken: 'https://ft4ix4gfs6.execute-api.us-east-2.amazonaws.com/prod/refresh'
 };
 
 /*

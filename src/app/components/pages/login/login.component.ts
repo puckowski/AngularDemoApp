@@ -5,6 +5,7 @@ import { AuthenticationService } from '@app/services/authentication.service';
 import { first } from 'rxjs/operators';
 import { DataHelper } from '@app/helpers/data-helper.helper';
 import { User } from '@app/models/user.model';
+import { RequestService } from '@app/services/requests/request.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit {
   private hide = true;
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService, private requestService: RequestService) {
     /*
      * Redirect to home if already logged in.
      */
@@ -89,7 +90,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.formUsername.value, this.formPassword.value)
+    this.requestService.login(this.formUsername.value, this.formPassword.value)
       .pipe(first())
       .subscribe(
         (data: User) => {
