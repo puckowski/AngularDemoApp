@@ -41,7 +41,12 @@ export class RequestService {
   }
 
   public refreshToken(): void {
-    if (DataHelper.isDefined(this.authenticationService.currentUserValue) === true
+    if (DataHelper.isDefined(this.authenticationService.currentUserValue) === false) {
+      /*
+       * No user to check for possible token.
+       */
+      return;
+    } else if (DataHelper.isDefined(this.authenticationService.currentUserValue) === true
       && DataHelper.isDefined(this.authenticationService.currentUserValue.token) === false) {
       /*
        * User is not a JWT based user.
