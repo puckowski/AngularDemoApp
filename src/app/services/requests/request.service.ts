@@ -12,6 +12,7 @@ import { AuthenticationService } from '../authentication.service';
 import { User, AuthorizationLevel } from '@app/models/user.model';
 import { LoginResponse } from '@app/models/login-response.model';
 import { ToastService } from '../toast.service';
+import { RoutingService } from '../routing.service';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class RequestService {
 
   private refreshInterval: Observable<number>;
 
-  constructor(private http: HttpClient, private loggerService: LoggerService,
+  constructor(private http: HttpClient, private loggerService: LoggerService, private routingService: RoutingService,
               private authenticationService: AuthenticationService, private toastService: ToastService) {
     this.refreshToken();
 
@@ -61,10 +62,12 @@ export class RequestService {
         } else {
           this.authenticationService.logout();
           this.toastService.toast('Session timed out. Please login again.');
+          this.routingService.navigateLogin();
         }
       }, (error: HttpErrorResponse) => {
         this.authenticationService.logout();
         this.toastService.toast('Session timed out. Please login again.');
+        this.routingService.navigateLogin();
       });
   }
 
