@@ -38,7 +38,7 @@ export class RequestService {
     this.refreshInterval = interval(this.TOKEN_REFRESH_INTERVAL_MILLIS);
     this.refreshInterval.subscribe((refreshCount: number) => {
       this.refreshToken();
-    })
+    });
   }
 
   public refreshToken(): void {
