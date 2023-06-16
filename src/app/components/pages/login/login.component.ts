@@ -77,15 +77,21 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(): void {
+    let formInvalid = false;
+
     if (this.formUsername.invalid) {
       this.formUsername.markAsTouched();
 
-      return;
+      formInvalid = true;
     }
 
     if (this.formPassword.invalid) {
-      this.formUsername.markAsTouched();
+      this.formPassword.markAsTouched();
 
+      formInvalid = true;
+    }
+
+    if (formInvalid) {
       return;
     }
 
